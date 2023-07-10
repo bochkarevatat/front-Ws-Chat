@@ -1,0 +1,1 @@
+import Entity from"./Entity";const root=document.querySelector("#root"),app=new Entity(root);app.init();
