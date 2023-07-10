@@ -1,17 +1,17 @@
-import Users from './Users.js';
+import Users from './Users';
 
 export default class Chat {
   constructor(container) {
     this.container = container;
     this.users = new Users();
     this.chatMessagesContainer = null;
-    this.youName = null; 
+    this.youName = null;
     this.connectId = null;
     this.init();
   }
 
   init() {
-    this.bindToDOM()
+    this.bindToDOM();
   }
 
   static get markup() {
@@ -29,28 +29,33 @@ export default class Chat {
               required>
           </form>
         </div>
-    </div>
-`
+    </div>`;
   }
+
   static get chatArea() {
     return '.chat__area';
   }
+
   static get user() {
     return '.user';
   }
+
   static get chatMessagesContainer() {
     return '.chat__messages-container';
   }
+
   static get formInput() {
     return '.form__input';
   }
+
   static get formGroup() {
     return '.form__group';
   }
+
   static get message() {
     return '.messageAll';
   }
-  message
+
   bindToDOM() {
     this.container.innerHTML = Chat.markup;
     this.chatArea = this.container.querySelector(Chat.chatArea);
@@ -60,7 +65,6 @@ export default class Chat {
     this.formInput = this.container.querySelector(Chat.formInput);
     this.formGroup = this.container.querySelector(Chat.formGroup);
     this.message = this.container.querySelector(Chat.message);
-    
   }
 
   addMessage(report) {
@@ -77,7 +81,7 @@ export default class Chat {
       <div class="message-header_name">${name}</div>
       <div class="message-header_time">${date.replace(',', '')}</div>
       </div>
-      <div class="message-text">${report.text}</div>`
+      <div class="message-text">${report.text}</div>`,
     );
     this.chatMessagesContainer.append(messageEl);
     //
@@ -85,27 +89,25 @@ export default class Chat {
 
   openChat() {
     const ws = new WebSocket('wss://my-first-proect.onrender.com');
-    
+
     this.formGroup.addEventListener('submit', (e) => {
       e.preventDefault();
       // удалить пробельные символы
       const message = this.formInput.value.trim();
-      
+
       if (!message) return;
-      
+
       ws.send(JSON.stringify({ message: { date: Date.now(), text: message } }));
-      console.log(message)
+      // console.log(message);
       this.formInput.value = '';
     });
 
     ws.addEventListener('open', () => {
-      console.log('ws open')
+      // console.log('ws open');
       ws.send(JSON.stringify({ name: this.youName }));
     });
 
-    
     ws.addEventListener('message', (e) => {
-
       const data = JSON.parse(e.data);
       console.log(data);
 
@@ -143,6 +145,5 @@ export default class Chat {
       console.log(e);
       console.log('ws error');
     });
-
   }
 }

@@ -1,37 +1,44 @@
 {
   "name": "front_ws_chat",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "webpack.common.js",
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint ./src",
+    "lint": "eslint .",
     "test": "jest",
     "coverage": "jest --coverage",
-    "ci": "start-test :8080 test"
-  },
-  "engines": {
-    "node": ">=16.0.0 <19.0.0"
+    "ci": "start-test :8888 test",
+    "doc": "jsdoc -c jsdoc.conf.json",
+    "preshow:coverage": "npm run coverage",
+    "show:coverage": "live-server coverage/lcov-report",
+    "preshow:doc": "npm run doc",
+    "show:doc": "live-server doc",
+    "preshow:dist": "npm run build",
+    "show:dist": "live-server dist"
   },
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.22.6",
-    "@babel/core": "^7.22.6",
-    "@babel/preset-env": "^7.22.6",
-    "babel-jest": "^29.6.0",
+    "@babel/core": "^7.22.8",
+    "@babel/preset-env": "^7.22.7",
+    "babel-jest": "^29.6.1",
     "babel-loader": "^9.1.2",
     "core-js": "3",
     "css-loader": "^6.8.1",
+    "eslint": "^7.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.3",
-    "jest": "^29.6.0",
+    "jest": "^29.6.1",
     "mini-css-extract-plugin": "^2.7.6",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.9.0"
-  }
+  },
+  "repository": "https://github.com/bochkarevatat/front-Ws-Chat.git",
+  "author": "bochkarevatat <tanitabt@rambler.ru>"
 }

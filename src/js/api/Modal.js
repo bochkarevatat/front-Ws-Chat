@@ -1,12 +1,11 @@
 export default class Modal {
   constructor() {
-    
     this.elem = null;
     this.tooltipEl = null;
     this.formEl = null;
     this.eventSubmit = null;
     this.bindToDOM();
-    this.onSubmitForm = this.onSubmitForm.bind(this)
+    this.onSubmitForm = this.onSubmitForm.bind(this);
     // this.createEl();
   }
 
@@ -27,9 +26,11 @@ export default class Modal {
   static get modalForm() {
     return '.modal__form';
   }
+
   static get form() {
     return '.form';
   }
+
   static get tooltip() {
     return '.tooltip';
   }

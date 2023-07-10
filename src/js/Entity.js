@@ -1,6 +1,6 @@
-import requestServer from './api/createRequest.js';
-import Modal from './api/Modal.js';
-import Chat from './api/Chat.js';
+import requestServer from './api/createRequest';
+import Modal from './api/Modal';
+import Chat from './api/Chat';
 
 export default class Entity {
   constructor(element) {
@@ -36,10 +36,8 @@ export default class Entity {
           msg.style.color = 'green';
           this.modal.elem.querySelector('.submit').disabled = false;
           clearInterval(id);
-        } else {
-          if (result instanceof TypeError) {
-            console.log('ждите');
-          }
+        } else if (result instanceof TypeError) {
+          console.log('ждите');
         }
       });
     }, 2000);
@@ -61,7 +59,7 @@ export default class Entity {
         const result = await response;
         if (result.status === 'find') {
           this.modal.form.append(this.modal.tooltip);
-          this.modal.tooltip.classList.remove('hidden')
+          this.modal.tooltip.classList.remove('hidden');
           setTimeout(() => {
             this.modal.tooltip.remove();
           }, 4000);
